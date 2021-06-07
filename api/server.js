@@ -2,14 +2,11 @@ const express = require('express');
 
 const server = express();
 
-const postsRouter = require('./api/posts/posts-router');
-
 server.use(express.json());
 
-server.get('/', (req, res) => {
-    res.send('Endpoint is working');
-});
-
-server.use("./api/posts", postsRouter);
-
+server.use('*',(req,res)=>{
+    res.status(404).json({
+        message:"not found"
+    })
+})
 module.exports = server;
